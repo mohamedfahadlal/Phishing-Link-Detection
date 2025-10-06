@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Phishing URL Detector</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1><i class="fas fa-shield-alt"></i>Phishing URL Detection</h1>
+            
+        </div>
+        
+        <div class="content">
+            <form action="{{ url_for('predict') }}" method="post" id="url-form">
+                <div class="form-group">
+                    <div class="input-wrapper">
+                        <i class="fas fa-link"></i>
+                        <input type="text" id="url-input" name="url" placeholder="Enter URL to check (e.g., https://www.example.com)" required value="{{ url or '' }}">
+                    </div>
+                </div>
+                
+                <button type="submit" id="check-btn">
+                    <i class="fas fa-search"></i> Check URL
+                </button>
+            </form>
+            
+            <div class="loading" id="loading">
+                <div class="spinner"></div>
+                <p>Analyzing URL for potential threats...</p>
+            </div>
+            
+            {% if prediction_text %}
+            <div class="result {% if 'Phishing' in prediction_text %}phishing{% else %}legitimate{% endif %}" id="result">
+                {% if 'Phishing' in prediction_text %}
+                    <i class="fas fa-exclamation-triangle"></i> 
+                {% else %}
+                    <i class="fas fa-check-circle"></i> 
+                {% endif %}
+                {{ prediction_text }}
+            </div>
+            {% endif %}
+            
+            <div class="info-box">
+                <h3><i class="fas fa-info-circle"></i> How it works</h3>
+                <p>Our algorithm analyzes the URL structure, domain reputation, and other security indicators to detect potential phishing threats in real-time.</p>
+            </div>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
