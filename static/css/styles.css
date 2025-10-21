@@ -1,0 +1,262 @@
+
+/* 🎨 Global Styling and Variables */
+:root {
+    --color-primary: #007BFF; /* Blue */
+    --color-secondary: #00C6FF; /* Light Blue */
+    --color-success: #28a745; /* Green */
+    --color-danger: #dc3545; /* Red */
+    --color-bg-dark: #0a0a2a;
+    --color-text-light: #f0f4ff;
+    --glass-bg: rgba(255, 255, 255, 0.1);
+    --glass-border: rgba(255, 255, 255, 0.25);
+    --shadow-light: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* 🌌 Professional Background (Refined) */
+body {
+    margin: 0;
+    font-family: 'Poppins', sans-serif; /* More modern font */
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    background: linear-gradient(-45deg, #0f0c29, #302b63, #24243e); /* Darker, more sophisticated gradient */
+    background-size: 400% 400%;
+    animation: bgMove 20s ease infinite;
+    color: var(--color-text-light);
+}
+@keyframes bgMove {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+/* 🌐 Top Hero Section (Polished) */
+header {
+    text-align: center;
+    padding: 4rem 1rem 3rem;
+    animation: fadeInDown 1s ease;
+}
+header h1 {
+    font-size: 3rem;
+    margin-bottom: 0.2em;
+    font-weight: 700;
+    text-shadow: 0 0 10px rgba(0, 123, 255, 0.5);
+}
+header p {
+    max-width: 700px;
+    margin: 0.5rem auto 0;
+    opacity: 0.85;
+    font-weight: 300;
+    line-height: 1.6;
+    font-size: 1.1rem;
+}
+@keyframes fadeInDown {
+    from { opacity: 0; transform: translateY(-30px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* 📌 Feature Highlights (Glassmorphism Cards) */
+.features {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+    max-width: 1000px;
+    margin: 0 auto 3rem;
+    padding: 0 1rem;
+}
+.feature-card {
+    background: var(--glass-bg);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    border: 1px solid var(--glass-border);
+    border-radius: 18px;
+    padding: 1.5rem;
+    width: 250px;
+    text-align: left;
+    transition: all 0.3s ease;
+    box-shadow: var(--shadow-light);
+    animation: fadeInUp 0.8s ease;
+}
+.feature-card:hover {
+    background: rgba(255,255,255,0.2);
+    transform: scale(1.03) translateY(-3px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+}
+.feature-icon-wrapper {
+    font-size: 1.8rem;
+    margin-bottom: 0.5rem;
+    color: var(--color-secondary);
+}
+.feature-title {
+    font-weight: 600;
+    font-size: 1.1rem;
+    margin-bottom: 0.3rem;
+}
+.feature-desc {
+    font-size: 0.9rem;
+    opacity: 0.7;
+}
+@keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* 🧊 Scanner Container (Main Interaction) */
+.container {
+    background: var(--glass-bg);
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+    border: 1px solid var(--glass-border);
+    padding: 2.5rem;
+    border-radius: 25px;
+    width: 90%;
+    max-width: 600px;
+    margin: 0 auto;
+    text-align: center;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.4);
+    animation: fadeIn 1s ease;
+}
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Input Styling */
+input[type="text"] {
+    width: calc(100% - 30px);
+    padding: 15px;
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    font-size: 16px;
+    outline: none;
+    background-color: rgba(0,0,0,0.2);
+    color: var(--color-text-light);
+    margin-bottom: 1.5em;
+    transition: all 0.3s;
+}
+input[type="text"]::placeholder {
+    color: rgba(255, 255, 255, 0.6);
+}
+input[type="text"]:focus {
+    background-color: rgba(0,0,0,0.3);
+    border-color: var(--color-secondary);
+    box-shadow: 0 0 15px rgba(0, 198, 255, 0.5);
+}
+
+/* Button Styling (Gradient Hover) */
+button {
+    width: 100%;
+    padding: 15px;
+    border: none;
+    border-radius: 12px;
+    background: linear-gradient(90deg, var(--color-primary), var(--color-secondary));
+    color: white;
+    font-size: 18px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0, 123, 255, 0.4);
+}
+button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0, 198, 255, 0.6);
+}
+button:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+}
+
+/* Result Display (Crucial UX Improvement) */
+#resultDisplay {
+    margin-top: 1.5rem;
+    min-height: 80px;
+    border-radius: 12px;
+    padding: 15px;
+    text-align: center;
+    font-size: 1.1rem;
+    font-weight: 500;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    transition: all 0.5s ease;
+    opacity: 0;
+    transform: scale(0.95);
+}
+#resultDisplay.show {
+    opacity: 1;
+    transform: scale(1);
+}
+.result-safe {
+    background-color: rgba(40, 167, 69, 0.3); /* Success Green */
+    border: 1px solid var(--color-success);
+}
+.result-danger {
+    background-color: rgba(220, 53, 69, 0.3); /* Danger Red */
+    border: 1px solid var(--color-danger);
+}
+.result-icon {
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+}
+.result-url {
+    font-size: 0.9rem;
+    opacity: 0.8;
+    word-break: break-all;
+    margin-top: 0.3rem;
+}
+
+/* Spinner */
+.spinner {
+    width: 30px;
+    height: 30px;
+    border: 4px solid rgba(255,255,255,0.3);
+    border-top: 4px solid var(--color-secondary);
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+    margin: 1.5rem auto 0;
+    display: none;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+
+/* Stats */
+.stats {
+    margin-top: 1.5rem;
+    font-size: 0.9rem;
+    opacity: 0.7;
+    text-align: right;
+    padding-right: 5px;
+}
+#counter {
+    font-weight: 600;
+    color: var(--color-secondary);
+}
+
+/* 📌 Footer Info */
+footer {
+    margin-top: auto;
+    text-align: center;
+    padding: 3rem 1rem 1.5rem;
+    font-size: 0.9rem;
+    opacity: 0.6;
+    line-height: 1.5;
+}
+footer a {
+    color: var(--color-secondary);
+    text-decoration: none;
+    transition: color 0.3s;
+}
+footer a:hover {
+    color: #fff;
+    text-decoration: underline;
+}
+
+/* Media Queries for Responsiveness */
+@media (max-width: 768px) {
+    header h1 { font-size: 2.5rem; }
+    .feature-card { width: 100%; max-width: 350px; }
+    .features { gap: 1rem; }
+}

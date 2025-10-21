@@ -2,55 +2,65 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <title>Phishing URL Detection</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Phishing URL Detector</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <!-- <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}"> -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/js/all.min.js" defer></script>
+    <!-- <script src="{{ url_for('static', filename='js/script.js') }}" defer></script> -->
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <script src="{{ url_for('static', filename='js/script.js') }}" defer></script>
 </head>
 <body>
-    <div class="container">
-        <div class="header">
-            <h1><i class="fas fa-shield-alt"></i>Phishing URL Detection</h1>
-            
-        </div>
-        
-        <div class="content">
-            <form action="{{ url_for('predict') }}" method="post" id="url-form">
-                <div class="form-group">
-                    <div class="input-wrapper">
-                        <i class="fas fa-link"></i>
-                        <input type="text" id="url-input" name="url" placeholder="Enter URL to check (e.g., https://www.example.com)" required value="{{ url or '' }}">
-                    </div>
-                </div>
-                
-                <button type="submit" id="check-btn">
-                    <i class="fas fa-search"></i> Check URL
-                </button>
-            </form>
-            
-            <div class="loading" id="loading">
-                <div class="spinner"></div>
-                <p>Analyzing URL for potential threats...</p>
-            </div>
-            
-            {% if prediction_text %}
-            <div class="result {% if 'Phishing' in prediction_text %}phishing{% else %}legitimate{% endif %}" id="result">
-                {% if 'Phishing' in prediction_text %}
-                    <i class="fas fa-exclamation-triangle"></i> 
-                {% else %}
-                    <i class="fas fa-check-circle"></i> 
-                {% endif %}
-                {{ prediction_text }}
-            </div>
-            {% endif %}
-            
-            <div class="info-box">
-                <h3><i class="fas fa-info-circle"></i> How it works</h3>
-                <p>Our algorithm analyzes the URL structure, domain reputation, and other security indicators to detect potential phishing threats in real-time.</p>
-            </div>
-        </div>
-    </div>
 
-    <script src="{{ url_for('static', filename='script.js') }}"></script>
+<header>
+    <h1><i class="fas fa-fingerprint"></i> Phishing URL Detection</h1>
+    <p>
+        An intelligent tool to check the legitimacy of a URL. 
+        Our model checks for suspicious characters, long domain names, and other common phishing indicators.
+    </p>
+</header>
+
+<section class="features">
+    <div class="feature-card">
+        <div class="feature-icon-wrapper"><i class="fas fa-bolt"></i></div>
+        <div class="feature-title">Real-Time Link Scan</div>
+        <div class="feature-desc">Leverages client-side heuristics for near-instant preliminary results.</div>
+    </div>
+    <div class="feature-card">
+        <div class="feature-icon-wrapper"><i class="fas fa-lock"></i></div>
+        <div class="feature-title">Safe & Secure</div>
+        <div class="feature-desc">Scans links locally for suspicious patterns and returns near-instant feedback.</div>
+    </div>
+    <div class="feature-card">
+        <div class="feature-icon-wrapper"><i class="fas fa-cogs"></i></div>
+        <div class="feature-title">Heuristic Scoring</div>
+        <div class="feature-desc">Identifies suspicious patterns like long domains, special characters, and subdomains.</div>
+    </div>
+</section>
+
+<div class="container">
+    <!-- Form for AJAX -->
+    <form id="urlForm">
+        <input type="text" id="urlInput" name="url" placeholder="Enter a URL here (e.g., https://www.google.com)" required />
+        <button type="submit">Check URL</button>
+    </form>
+
+    <div class="spinner" id="spinner"></div>
+
+    <div id="resultDisplay"></div>
+
+    <div class="stats">
+        Total Scans Performed: <span id="counter">0</span>
+    </div>
+</div>
+
+<!-- <footer>
+    Developed by Security Enthusiasts | 
+    <a href="https://github.com/your-profile" target="_blank" rel="noopener noreferrer">
+        View Source Code <i class="fab fa-github"></i>
+    </a>
+</footer> -->
+
 </body>
 </html>
